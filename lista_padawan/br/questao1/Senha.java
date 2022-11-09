@@ -1,4 +1,4 @@
-package br.questao2;
+package br.questao1;
 
 
 import java.util.Scanner;
