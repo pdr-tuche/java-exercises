@@ -6,6 +6,7 @@ public class Aluno {
     private int segundaNota;
 
     private double media;
+    private String situacao;
 
     public Aluno() {
     }
@@ -52,5 +53,13 @@ public class Aluno {
 
     public void setMedia(double media) {
         this.media = media;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
 }

@@ -12,7 +12,7 @@ public class Main {
         } while (flagFim != true);
 
         aluno.mostrarTurma();
-        aluno.setMediaTurma(aluno.mediaTurma(aluno.getTurma())); //passando o array de turmas para calcular a media da turma e depois passado para o set
+        aluno.setMediaTurma(aluno.mediaTurma());
         aluno.mostrarMediaTurma();
 
 

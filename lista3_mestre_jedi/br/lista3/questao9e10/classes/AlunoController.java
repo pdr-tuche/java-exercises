@@ -10,10 +10,6 @@ public class AlunoController extends Aluno {
     public AlunoController() {
     }
 
-    public ArrayList<Aluno> getTurma() {
-        return this.turma;
-    }
-
     public double getMediaTurma() {
         return mediaTurma;
     }
@@ -45,6 +41,7 @@ public class AlunoController extends Aluno {
 
             adicionarAlunoNaTurma(a);
             obterMediaAluno(a);
+            aprovacao(a);
         }
         return false;
     }
@@ -61,8 +58,9 @@ public class AlunoController extends Aluno {
                     Primeira Nota: %f
                     Segunda Nota: %f
                     Media: %f
+                    %s
                     --- --- --- ---
-                    """, elem.getNome(), elem.getPrimeiraNota(), elem.getSegundaNota(), elem.getMedia());
+                    """, elem.getNome(), elem.getPrimeiraNota(), elem.getSegundaNota(), elem.getMedia(), elem.getSituacao());
         }
     }
 
@@ -71,20 +69,39 @@ public class AlunoController extends Aluno {
         a.setMedia(media);
     }
 
-    public double mediaTurma(ArrayList<Aluno> arr) {
+    public double mediaTurma() {
         double acumulador = 0;
         double media;
         for (Aluno elem :
-                arr) {
+                this.turma) {
             acumulador += elem.getMedia();
         }
 
-        media = acumulador / arr.size();
+        media = acumulador / this.turma.size();
         return media;
     }
 
-    public void mostrarMediaTurma(){
+    public void mostrarMediaTurma() {
         System.out.printf("A media de notas da turma é de: %f", getMediaTurma());
+        System.out.printf("Total de %s alunos aprovados.", quantidadeAprovados());
     }
 
+    public void aprovacao(Aluno a) {
+        if (a.getMedia() >= 60.0) {
+            a.setSituacao("Aprovado");
+        } else {
+            a.setSituacao("Reprovado");
+        }
+    }
+
+    public int quantidadeAprovados() {
+        int count = 0;
+        for (Aluno elem :
+                this.turma) {
+            if (elem.getSituacao().equals("Aprovado")) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
