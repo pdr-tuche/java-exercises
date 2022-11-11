@@ -14,6 +14,7 @@ public class Main {
         aluno.mostrarTurma();
         aluno.setMediaTurma(aluno.mediaTurma());
         aluno.mostrarMediaTurma();
+        aluno.alunosAbaixoDaMediaTurma();
 
 
     }

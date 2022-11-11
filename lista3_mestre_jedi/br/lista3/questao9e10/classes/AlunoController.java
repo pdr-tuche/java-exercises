@@ -82,19 +82,23 @@ public class AlunoController extends Aluno {
     }
 
     public void mostrarMediaTurma() {
-        System.out.printf("A media de notas da turma é de: %f", getMediaTurma());
-        System.out.printf("Total de %s alunos aprovados.", quantidadeAprovados());
+        System.out.printf("A media de notas da turma é de: %f\n", getMediaTurma());
+        System.out.printf("Total de %s alunos aprovados.\n", quantidadeAlunosAprovados());
+        System.out.printf("Total de %s alunos na final.\n", quantidadeAlunosFinal());
+        System.out.printf("Total de %s alunos reprovados.\n\n", quantidadeAlunosReprovados());
     }
 
     public void aprovacao(Aluno a) {
         if (a.getMedia() >= 60.0) {
             a.setSituacao("Aprovado");
+        } else if (a.getMedia() < 60.0 && a.getMedia() >= 50.0) {
+            a.setSituacao("Final");
         } else {
             a.setSituacao("Reprovado");
         }
     }
 
-    public int quantidadeAprovados() {
+    public int quantidadeAlunosAprovados() {
         int count = 0;
         for (Aluno elem :
                 this.turma) {
@@ -104,4 +108,38 @@ public class AlunoController extends Aluno {
         }
         return count;
     }
+
+    public int quantidadeAlunosFinal() {
+        int count = 0;
+        for (Aluno elem :
+                this.turma) {
+            if (elem.getSituacao().equals("Final")) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int quantidadeAlunosReprovados() {
+        int count = 0;
+        for (Aluno elem :
+                this.turma) {
+            if (elem.getSituacao().equals("Reprovado")) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void alunosAbaixoDaMediaTurma() {
+        System.out.println("Alunos com notas abaixo da media da turma:");
+        for (Aluno elem :
+                this.turma) {
+            if (elem.getPrimeiraNota() < getMediaTurma() &&
+                    elem.getSegundaNota() < getMediaTurma()) {
+                System.out.println("Nome: "+ elem.getNome());
+            }
+        }
+    }
+
 }
